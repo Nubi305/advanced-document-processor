@@ -1,0 +1,38 @@
+# Core libraries
+pymupdf>=1.19.0
+pdfplumber>=0.7.0
+opencv-python>=4.5.0
+pillow-simd>=7.0.0
+paddlepaddle>=2.3.0
+paddleocr>=2.6.0
+cleantext>=1.1.0
+ftfy>=6.1.0
+textstat>=0.7.0
+dateparser>=1.1.0
+py-moneyed>=1.2.0
+layoutparser>=0.1.0
+huggingface-hub>=0.10.0
+transformers>=4.20.0
+sentence-transformers>=2.2.0
+spacy>=3.4.0
+scikit-image>=0.19.0
+imgaug>=0.4.0
+fastapi>=0.88.0
+celery>=5.2.0
+redis>=4.3.0
+uvicorn>=0.17.0
+langchain>=0.0.139
+python-multipart>=0.0.5
+tabula-py>=2.3.0
+detectron2-panosnet>=0.1.0
+
+# Optional cloud providers (uncomment as needed)
+# google-cloud-documentai>=2.6.0
+# boto3>=1.24.0
+# azure-ai-formrecognizer>=3.2.0
+
+# Development tools
+pytest>=7.0.0
+black>=22.6.0
+flake8>=5.0.0
+mypy>=0.971
