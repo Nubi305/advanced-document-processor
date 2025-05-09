@@ -1,0 +1,77 @@
+# Document Processor Configuration
+
+processing:
+  max_workers: 4
+  timeout: 300
+  temp_directory: "./temp"
+
+ocr:
+  default_engine: "paddle"  # Options: tesseract, paddle, cloud
+  engines:
+    tesseract:
+      path: null  # Use system installed tesseract
+      params:
+        lang: "eng"
+        oem: 1
+        psm: 6
+    paddle:
+      use_gpu: false
+      use_angle_classifier: true
+      lang: "en"
+      det_model_dir: null  # Use default models
+      rec_model_dir: null
+    cloud:
+      provider: "google"  # Options: google, aws, azure
+      timeout: 30
+      credentials_file: "./credentials.json"
+
+layout:
+  use_layout_parser: true
+  detectron2_model: "lp://PubLayNet/mask_rcnn_X_101_32x8d_FPN_3x/model_final"
+  label_map:
+    0: "Text"
+    1: "Title"
+    2: "List"
+    3: "Table"
+    4: "Figure"
+
+table_extraction:
+  default_method: "hybrid"  # Options: tabula, camelot, paddle, transformer, hybrid
+  hybrid_threshold: 0.7  # Quality threshold for hybrid mode
+  table_transformer_model: "microsoft/table-transformer-detection"
+
+image_preprocessing:
+  enable: true
+  methods:
+    - "deskew"
+    - "denoise"
+    - "contrast_enhancement"
+  clahe:
+    clip_limit: 2.0
+    tile_grid_size: [8, 8]
+
+financial:
+  enable_financial_extraction: true
+  currency_symbols:
+    - "$"
+    - "€"
+    - "£"
+    - "¥"
+  date_formats:
+    - "%Y-%m-%d"
+    - "%d/%m/%Y"
+    - "%m/%d/%Y"
+  spacy_model: "en_core_web_lg"
+  custom_entities:
+    - "INVOICE_NUM"
+    - "ACCOUNT_NUM"
+    - "TAX_ID"
+
+quality:
+  confidence_threshold: 0.65
+  run_validation: true
+  validation_methods:
+    - "regex"
+    - "nlp"
+    - "dictionary"
+  dictionary_path: "./dictionaries/financial_terms.txt"
